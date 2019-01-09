@@ -1,0 +1,58 @@
+---
+title: "Homework 1 Submission"
+output:
+  html_document:
+    df_print: paged
+  word_document:
+    reference_docx: Margin_Layout.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Complete the following problems and add your solutions to this word document.  An R markdown file is included if you'd prefer to knit your soulutions. Note that some of the problems have slightly different instructions than those in the text.  For problems that ask you to use IORtutorial or Excel you should include a screenshot or two showing your work.  For problems that ask you to formulate a model you should present the objective function and the constraints like those that are presented in the first problem.  If typing the equations is too tedious simply take a picture of your neatly handwritten equations and include it in the document.  You should be able to refer to this document a few months in the future and be able to see not only the problem, but also enough information that you can recall how you arrived at the solution.  Save the completed document as your reference document.
+
+### What to hand in:
+
+* Take your reference document and delete the problem statements but not the problem numbersq.  Submit the cleaned document to the D2L dropbox.
+* Clearly name any Excel or other auxilliary files and upload those as well.
+
+### Getting Help:  
+
+Post questions on Piazza.  Always include the problem number in your subject line, e.g. "HW 1.3" so that it's easy to search and find relevant posts.  If your post would reveal a significant portion of a solution then make it a private post and tell us if it is OK to share it publically and we can judge whether or not to share it.  
+
+## HW 1.1 - Textbook 3.1-6
+
+![](./images/Problem 1.1.png)
+
+## HW 1.2 - Textbook 3.1-9
+
+![](./images/Problem 1.2.png)
+
+## HW 1.3 - Textbook 3.1-10
+
+![](./images/Problem 1.3.png)
+
+## HW 1.4 - Textbook 3.2-2
+
+![](./images/Problem 1.4.png)
+
+## HW 1.5 - Textbook 3.2-3
+
+![](./images/Problem 1.5.png)
+
+## HW 1.6 - Textbook 3.2-4
+
+![](./images/Problem 1.6.png)
+
+## HW 1.7 - Textbook 3.2-6
+
+![](./images/Problem 1.7.png)
+
+## HW 1.8 - Textbook 3.3-2
+
+![](./images/Problem 1.8.png)
+
