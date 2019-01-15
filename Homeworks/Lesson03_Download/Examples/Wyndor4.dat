@@ -1,0 +1,12 @@
+/*********************************************
+ * OPL 12.6.3.0 Data
+ * Author: jbaggett
+ * Creation Date: Jun 23, 2016 at 10:37:01 AM
+ *********************************************/
+
+ Products = {"Doors","Windows"};
+ Plants = {"Plant1","Plant2","Plant3"};
+ 
+ ProfitPerBatch = [3,5];
+ HoursUsedPerBatch = [ [1,0], [0,2], [3,2] ];
+ MaxProductionHours = [4,12,18];

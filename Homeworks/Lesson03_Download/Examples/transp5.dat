@@ -1,0 +1,43 @@
+Cities = { GARY CLEV PITT FRA  DET  LAN  WIN  STL  FRE  LAF };
+Capacity    = 625;
+
+TableRoutes = {
+  <GARY,FRA,30>
+  <GARY,DET,10>
+  <GARY,LAN,8>
+  <GARY,WIN,10>
+  <GARY,STL,11>
+  <GARY,FRE,71>
+  <GARY,LAF,6>
+  <CLEV,FRA,22>
+  <CLEV,DET,7>
+  <CLEV,LAN,10>
+  <CLEV,WIN, 7>
+  <CLEV,STL,21>
+  <CLEV,FRE,82>
+  <CLEV,LAF,13> 
+  <PITT,FRA,19>
+  <PITT,DET,11>
+  <PITT,LAN,12>
+  <PITT,WIN,10>
+  <PITT,STL,25>
+  <PITT,FRE,83>
+  <PITT,LAF,15> 
+};
+
+Supply = #[
+      GARY: 400
+      CLEV: 700
+      PITT: 800
+]#;
+
+Demand = #[
+      FRA: 300
+      DET: 300
+      LAN: 100
+      WIN: 75
+      STL: 650
+      FRE: 225
+      LAF: 250
+]#;
+
