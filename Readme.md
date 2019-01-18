@@ -2,7 +2,9 @@
 
 Here you'll find all of the materials you need to download for the homework and exams.
 
-This material is under construction and will be updated throughout the semester.  At present Lessons 1-3 are ready.
+This material is under construction and will be updated throughout the semester.  
+
+*I'm revising the homework sets with the goal of adding clarity and uniformity to them.  Downloads for Lessons 1-4 are available now and more are coming soon.*
 
 ## Homework Sets
 
