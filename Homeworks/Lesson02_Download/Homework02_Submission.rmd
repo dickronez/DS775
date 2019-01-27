@@ -2,10 +2,10 @@
 title: "Homework 2 Submission"
 author: "Your Name Here"
 output:
-  html_document:
-    df_print: paged
   word_document:
     reference_docx: Margin_Layout.docx
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
