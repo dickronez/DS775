@@ -10,6 +10,8 @@
  float ProfitPerBatch[Products] = [3,5];
  float HoursUsedPerBatch[Plants][Products] = [ [1,0], [0,2], [3,2] ];
  float MaxProductionHours[Plants] = [4,12,18];
+
+ constraint ctMaxHours[Plants];
  
  dvar float+ Batches[Products];
  
