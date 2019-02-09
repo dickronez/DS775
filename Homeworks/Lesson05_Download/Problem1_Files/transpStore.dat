@@ -1,0 +1,85 @@
+//--------------------------------------------------
+// transportation file produced by reading 
+// excel file into R using XLConnect 
+// and using R commands to output textfile 
+//--------------------------------------------------
+
+Factories = { fA fB fC fD };
+Warehouses = { wA wB wC };
+Stores = { sA sB sC sD sE };
+Products = { pA pB };
+CapacityFW = 700;
+CapacityWS = 700;
+MaxStorage = 700;
+TableRoutesFW = {
+ < pA, fA, wA, 10 >
+ < pA, fA, wB, 20 >
+ < pA, fA, wC, 30 >
+ < pA, fB, wA, 20 >
+ < pA, fB, wB, 25 >
+ < pA, fB, wC, 18 >
+ < pA, fC, wA, 17 >
+ < pA, fC, wB, 18 >
+ < pA, fC, wC, 20 >
+ < pA, fD, wA, 10 >
+ < pA, fD, wB, 20 >
+ < pA, fD, wC, 15 >
+ < pB, fA, wA, 10 >
+ < pB, fA, wB, 20 >
+ < pB, fA, wC, 30 >
+ < pB, fB, wA, 10 >
+ < pB, fB, wB, 15 >
+ < pB, fB, wC, 8 >
+ < pB, fC, wA, 17 >
+ < pB, fC, wB, 18 >
+ < pB, fC, wC, 20 >
+ < pB, fD, wA, 10 >
+ < pB, fD, wB, 20 >
+ < pB, fD, wC, 15 >
+};
+
+TableRoutesWS = {
+ < pA, wA, sA, 10 >
+ < pA, wA, sB, 11 >
+ < pA, wA, sC, 12 >
+ < pA, wB, sB, 15 >
+ < pA, wB, sC, 18 >
+ < pA, wB, sD, 20 >
+ < pA, wC, sC, 9 >
+ < pA, wC, sD, 10 >
+ < pA, wC, sE, 12 >
+ < pB, wA, sA, 10 >
+ < pB, wA, sB, 11 >
+ < pB, wA, sC, 12 >
+ < pB, wB, sB, 15 >
+ < pB, wB, sC, 18 >
+ < pB, wB, sD, 20 >
+ < pB, wC, sC, 9 >
+ < pB, wC, sD, 10 >
+ < pB, wC, sE, 12 >
+};
+
+Supply = #[
+ < pA, fA >: 300
+ < pA, fB >: 200
+ < pA, fC >: 400
+ < pA, fD >: 100
+ < pB, fA >: 300
+ < pB, fB >: 100
+ < pB, fC >: 200
+ < pB, fD >: 400
+]#;
+
+Demand = #[
+ < pA, sA >: 200
+ < pA, sB >: 100
+ < pA, sC >: 300
+ < pA, sD >: 100
+ < pA, sE >: 300
+ < pB, sA >: 200
+ < pB, sB >: 100
+ < pB, sC >: 200
+ < pB, sD >: 100
+ < pB, sE >: 400
+]#;
+

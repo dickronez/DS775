@@ -1,0 +1,20 @@
+/*********************************************
+ * OPL 12.6.3.0 Data
+ * Author: jbaggett
+ * Creation Date: Aug 3, 2016 at 10:19:00 AM
+ *********************************************/
+
+ NumKibbutz = 3;
+ Crops = { "SugarBeets", "Cotton", "Sorghum"};
+ 
+ WaterAlloc = [ 600, 800, 375] ;
+ UsableLand = [ 400, 600, 300];
+ 
+ NetReturn = [ 1000, 750, 250];
+ MaxQuota = [ 600, 500, 325];
+ WaterConsume = [ 3, 2, 1];
+
+ 
+ 
+ 
+ 
