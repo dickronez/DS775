@@ -1,0 +1,64 @@
+Warehouses = { wA wB wC };
+Stores = { sA sB sC sD sE sF sG sH sI sJ sK sL sM sN sO sP sQ sR sS sT};
+Capacity = 175;
+ConnectionsCosts = {
+ < wA, sA, 7>
+ < wA, sB, 8>
+ < wA, sC, 13>
+ < wA, sD, 12>
+ < wA, sE, 7>
+ < wA, sF, 6>
+ < wA, sG, 9>
+ < wA, sH, 10>
+ < wA, sI, 14>
+ < wA, sJ, 13>
+ < wB, sG, 8>
+ < wB, sH, 6>
+ < wB, sI, 12>
+ < wB, sJ, 11>
+ < wB, sK, 10>
+ < wB, sL, 10>
+ < wB, sM, 7>
+ < wB, sN, 14>
+ < wB, sO, 11>
+ < wB, sP, 5>
+ < wC, sL, 7>
+ < wC, sM, 14>
+ < wC, sN, 13>
+ < wC, sO, 7>
+ < wC, sP, 8>
+ < wC, sQ, 15>
+ < wC, sR, 12>
+ < wC, sS, 11>
+ < wC, sT, 11>
+};
+
+Supply = #[
+ wA:1000
+ wB:900
+ wC:1100
+]#;
+
+Demand = #[
+ sA:173
+ sB:103
+ sC:110
+ sD:121
+ sE:148
+ sF:145
+ sG:154
+ sH:123
+ sI:165
+ sJ:169
+ sK:175
+ sL:165
+ sM:184
+ sN:165
+ sO:132
+ sP:183
+ sQ:146
+ sR:142
+ sS:175
+ sT:122
+]#;
+
