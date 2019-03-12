@@ -54,7 +54,7 @@ Minimize $V(x_1,x_2) = \sigma_{11} x_1^2 + \sigma_{12} x_1 x_2 + \sigma_{21} x_2
 
 Subject to $\mu_1 x_1 + \mu_2 x_2 \geq L, P_1 x_1 + P_2 x_2 \leq B, x_1 \geq 0, x_2 \geq 0.$
 
-(a)  Write out the complete nonlinear programming model filling in the constants but leaving $B$ unspecified for now.
+(a)  Write out the complete nonlinear programming model filling in the constants but leaving $L$ unspecified for now.
 
 (b) Use Solver with its GRG Nonlinear solving method or ASPE with its Quadratic solving method to solve this model for four cases:  minimum acceptable expected return $ = 13, 14, 15, 16.$  Report the $(x_1^*, x_2^*, V^*)$ for each case.  Include a picture of the spreadsheet.  Upload hw8p2.xlsx.
 
@@ -62,7 +62,7 @@ Subject to $\mu_1 x_1 + \mu_2 x_2 \geq L, P_1 x_1 + P_2 x_2 \leq B, x_1 \geq 0, 
 
 The management of the Albert Hanson Company is trying to determine the best product mix for two new products. Because these products would share the same production facilities, the total number of units produced of the two products combined cannot exceed two per hour. Because of uncertainty about how well these products will sell, the profit from producing each product provides decreasing marginal returns as the production rate is increased. In particular, with a production rate of $R_1$ units per hour, it is estimated that Product 1 would provide a profit (in dollars per hour) of $200 R_1 - 100 R_1^2.$ If the production rate of product 2 is $R_2$ units per hour, its estimated profit (in dollars per hour) would be $300 R_2 - 100 R_2^2.$  
 
-(a) Formulate a quadratic programming model in algebraic form for determining the product mix that maximizes the total profit per hour.
+(a) Formulate a quadratic programming model in algebraic form for determining the product mix that maximizes the total profit per hour.  We are allowing fractional solutions here so this is not an integer programming problem.
 
 (b) Use OPL to solve the quadratic program. A sample OPL quadratic program, qpex1.mod, is included in the download packet. Include the source code for the model file in this document as well as a screenshot of the problem browswer showing the solution.  Upload hw8p3.mod.
 
@@ -72,7 +72,7 @@ Consider the following nonconvex programming problem:
 
 Maximize Profit $=100 x^6 - 1359 x^5 + 6836 x^4 - 15670 x^3 + 15870 x^2 - 5095 x$
 
-subject to 0 \leq x \leq 5.$
+subject to $0 \leq x \leq 5.$
 
 (a) Make a graph of this function and include a screen shot.  I like the online graphing calculator at desmos.com - use the "wrench" icon to access settings to adjust the graphing window.  How many local maxima are there.  From the graph approximate the maximum profit and where does it occurs.
 
@@ -88,10 +88,14 @@ We are going to learn more about multistart and evolutionary algorithms in Lesso
 
 The Omega Manufacturing Company has discontinued the production of a certain unprofitable product line. This act created considerable excess production capacity. Management is considering devoting this excess capacity to one or more of three products; call them products 1, 2, and 3. The available capacity on the machines that might limit output is summarized in the following table:
 
-The number of machine hours required for each unit of the respective products is
+![](./images/8p5a.png) 
+
+The number of machine hours required for each unit of the respective products is (in machine hours per unit):
+
+![](./images/8p5b.png) 
 
 
-The sales department indicates that the sales potential for products 1 and 2 exceeds the maximum production rate and that the sales potential for product 3 is 20 units per week.  The firm encounters pricep elasticity in selling the three products.  In particular, suppose that
+The sales department indicates that the sales potential for products 1 and 2 exceeds the maximum production rate and that the sales potential for product 3 is 20 units per week.  The firm encounters price elasticity in selling the three products.  In particular, suppose that
 the unit costs for producing products 1, 2, and 3 are \$25, \$10, and \$15, respectively.
 The firm encounters pricep elasticity in selling the three products sothat the prices required (in dollars) in order to be able to sell $x_1$ , $x_2$ , and $x_3$ units are 
 $(35 + 100 x_1^{-\frac{1}{3}} )$, $(15 + 40x^{-\frac{1}{4}})$, and $(20 + 50 x_3^{-\frac{1}{2}}),$, respectively.
