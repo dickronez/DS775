@@ -2,10 +2,10 @@
 title: "Homework 8 Submission"
 author: "Your Name Here"
 output:
-  word_document:
-    reference_docx: Margin_Layout.docx
   html_document:
     df_print: paged
+  word_document:
+    reference_docx: Margin_Layout.docx
 ---
 
 ```{r setup, include=FALSE}
@@ -95,10 +95,8 @@ The number of machine hours required for each unit of the respective products is
 ![](./images/8p5b.png) 
 
 
-The sales department indicates that the sales potential for products 1 and 2 exceeds the maximum production rate and that the sales potential for product 3 is 20 units per week.  The firm encounters price elasticity in selling the three products.  In particular, suppose that
-the unit costs for producing products 1, 2, and 3 are \$25, \$10, and \$15, respectively.
-The firm encounters pricep elasticity in selling the three products sothat the prices required (in dollars) in order to be able to sell $x_1$ , $x_2$ , and $x_3$ units are 
-$(35 + 100 x_1^{-\frac{1}{3}} )$, $(15 + 40x^{-\frac{1}{4}})$, and $(20 + 50 x_3^{-\frac{1}{2}}),$, respectively.
+The sales department indicates that the sales potential for products 1 and 2 exceeds the maximum production rate and that the sales potential for product 3 is 20 units per week.  The unit costs for producing products 1, 2, and 3 are \$25, \$10, and \$15, respectively.  The firm encounters price elasticity in selling the three products so that the prices required (in dollars) in order to be able to sell $x_1$ , $x_2$ , and $x_3$ units are 
+$(35 + 100 x_1^{-\frac{1}{3}} )$, $(15 + 40x_2^{-\frac{1}{4}})$, and $(20 + 50 x_3^{-\frac{1}{2}}),$ respectively.
 
 (a) State a nonlinear programming model for the problem of determining how many units of each product the firm should produce to maximize profit.
 
