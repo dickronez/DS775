@@ -1,0 +1,227 @@
+---
+title: "Homework 9 Submission"
+author: "Your Name Here"
+output:
+  html_document:
+    df_print: paged
+  word_document:
+    reference_docx: Margin_Layout.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Download files at https://github.com/DataScienceUWL/DS775.  The files for this HW are in Homeworks/Lesson09_Download.
+
+Complete the following problems and add your solutions to this word document.  This HW works best if you just work directly on the R markdown file included in the download folder and knit it to produce your solutions.  As in past weeks your submission should be a complete reference document.  The tools this week are all in R. 
+
+**Python.**  If you'd like to explore using Python to solve any of these pr oblems instead of OPL or Excel that's fine (in fact I'd like it since I'm planning to include python in the next iteration of this course).  Include your source code and output in this document and upload the corresponding .py or .ipynb file to the dropbox.  If you decide to do the entire assignment in Python, feel free to submit a Jupyter notebook.
+
+### Getting Help:  
+
+Post questions on Piazza.  Always include the problem number in your subject line, e.g. "HW 1.3" so that it's easy to search and find relevant posts.  If your post would reveal a significant portion of a solution then make it a private post and tell us if it is OK to share it publically and we can judge whether or not to share it. 
+
+### What to hand in:
+
+* Your completed .rmd file and the knitted .docx file.
+* Please delete instructions and examples and include only your solutions and narration.
+
+### The spirit of this HW
+
+Read about the concepts behind these algorithms in the text (share any other resources you find on Piazza ), then tinker with the algorithms to try to find good answers to the problems below.  We want you to get a feel for what it's like to solve difficult optimization problems where it's pretty much impossible to guarantee that you've got the best answer.
+
+## Homework 9
+
+## HW 9.1 - Textbook 13.10-6
+
+Install the 'gramEvol' package to get access to a genetic algorithm that uses integer encoding called GeneticAlg.int().  Use that algorithm to solve this problem.  You'll have to read the documentation to figure out how to use the algorithm.
+
+```{r echo=FALSE, eval = TRUE}
+
+# don't modify this block.
+
+# the distAssign and demrepFit functions go along with problem 13.10-6 from the textbook.
+# demrepFit is the function to optimize 
+
+cities = matrix(c(152,81,75,34,62,38,48,74,98,66,83,86,72,28,112,45,93,72,
+                  62,59,83,52,87,87,69,49,62,72,75,82,83,53,98,82,68,98),18,2);
+
+distAssign <- function(x){
+  # x is an input of 18 integers 1..10 that assign city 1..18 to districts 1..10
+  # distAssign is a dataframe with the number of Democrats, Republicans, Total, and Winner
+  # in each of the 10 districts
+  sumdem = numeric(10);
+  sumrep = numeric(10);
+  sumtot = numeric(10);
+  for (i in 1:10){
+    sumdem[i] = sum( cities[x==i,1] );
+    sumrep[i] = sum( cities[x==i,2] );
+    sumtot[i] = sumdem[i] + sumrep[i];
+  }
+  distAssign <- data.frame( Dem = sumdem, Rep = sumrep, Tot = sumtot, Win = sumrep>sumdem );
+}
+
+demrepFit <- function(x){
+  # x is an input of 18 integers 1..10 that assign city 1..18 to districts 1..10
+  # demrepfit is the number of districts where Republicans have a majority
+  # subtract a penalty proportional to amount by which constraints are violated
+  # 
+  df <- distAssign(x);
+  numRepDist = sum(df$Win);
+  sumtot = df$Tot;
+  
+  # total number of voters is between 150 mil and 350 mil in each district
+  # to enforce this constraint we subtract a penalty term equal to the total amount this
+  # constraint is violated
+  demrepFit = numRepDist - ( sum( 150-sumtot[sumtot<150] )  + sum( sumtot[sumtot>350]-350 ) );
+  
+  # if the algorithm you use minimizes the fitness instead of maximizing, then
+  # uncomment the next line, if your routine maximizes then the next line should be 
+  # commented out
+  demrepFit = -demrepFit; 
+}
+
+# Notice the constraints aren't explicitly enforced, but instead a penalty term is included in the 
+# fitness function to encourage the genetic algorithm to seek potential solutions that satisfy 
+# the constraints.
+```
+
+In the block below add your code to use the genetic algorithm.   Either experiment with different random number seeds or use a for loop to conduct the optimization many times to find the best solution you can. Don't knit with a for loop repeatedly as it will take a long time, rather use the for loop to find a good random number seed then use that seed to do one optimization in your final document. You may also wish to play with the population size (larger is better, but slower)
+and the number of iterations.
+
+```{r}
+# you can delete the lines below, they are just there to show you how the functions work
+x = c(1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8); # a sample assignment
+(demrepFit(x)) # extra parentheses force R to print the result
+
+# after you've found a solution, you can inspect the results using
+(distAssign(x))
+# for this x Republicans win 6 districts, but the constraints are violated
+```
+
+Make sure you print out your best solution.  How many districts do Republicans win with your solution?  (I don't think Republicans can win all 10 in this example, but they can get close.)
+
+## HW 9.2 - TSP with a Genetic Algorithm
+
+Use the ga() function with permutation encoding from the 'GA' package to approximate a solution to this 48 city TSP problem.  Try different random number seeds and report the best result you can find.  The plotTour function below can be used to visualize your tours. Here is the tour plotting function and an example plot.  Feel free to delete the example plot from your HW submission. 
+
+```{r echo = FALSE}
+# define function for plotting so we can reuse in later problems
+plotTour <- function(x,y,tour,totDist,titleString){
+  # x = vector of x-coordinates of cities
+  # y = vector of y-coordinates of cities
+  # tour = vector of indices showing order in which cities are visited, e.g c(1,2,4,3), lauto
+  #        wraps back to last city
+  # titleString = string to appear at top of plot
+
+  numcities = length(x);
+  str = paste(titleString," Total distance = ",as.character(totDist));
+  plot(x, y, type = "n", asp = 1, xlab = "", ylab = "", main = str);
+  points(x, y, pch = 16, cex = 1.5, col = "grey")
+  abline(h = pretty(range(x), 10), v = pretty(range(y), 10), col = "lightgrey")
+  
+  tour <- c(tour, tour[1])
+  n <- length(tour)
+  arrows(x[tour[-n]], y[tour[-n]], 
+         x[tour[-1]], y[tour[-1]], 
+         length = 0.15, angle = 45, 
+         col = "steelblue", lwd = 2)
+}
+```
+
+```{r echo = FALSE, eval = TRUE}
+# here is graph of a random tour, change to eval = FALSE to not see this plot
+n = 10;
+x = runif(n, min = 0, max = 1000)
+y = runif(n, min = 0, max = 1000)
+tour = sample(1:10)
+#tour = c(tour, tour[1])
+totDist = 732 # made up, below use the tourLength function to compute
+titleStr = 'A sample graph'
+plotTour(x,y,tour,totDist,titleStr)
+```
+
+The fitness function below is is `tspFitness()`.  Because GA() actually maximizes we take the reciprocal of the length as the objective so that finding a max corresponds to finding a short tour.  
+```{r echo = FALSE, warning=FALSE, message=FALSE}
+# this is supposedly the 48 captial cities in the continental United States, 
+# but I think things are a little off and I don't know the units.  
+# The data is available here
+# http://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
+
+# load the data
+distmat <- as.matrix(read.table("resources/att48_d.txt"))
+coord <- as.matrix(read.table("resources/att48_xy.txt"))
+# this is supposedly the best possible tour
+tour_best <- as.vector(as.matrix(read.table("resources/att48_s.txt")))
+tour_best <- tour_best[1:48]
+x <- coord[,1];
+y <- coord[,2];
+numcities <- length(x);
+
+tourLength <- function(tour,D) {  # Target function
+  tour.wrap <- embed(c(tour,tour[1]), 2) # make sure we wrap back to first city
+  sum(D[cbind(tour.wrap[,2], tour.wrap[,1])])
+}
+
+# inverse of thetotal distance is the fitness (because the GA maximizes)
+tspFitness <- function(tour, ...) 1/tourLength(tour, ...)
+
+```
+
+You may have to play with the optimization parameters a bit to find a good solution.  `popSize`, `pmutation`, and `pcrossover` are good parameters to experiment with.  
+
+## HW 9.3 - TSP with Simulated Annealing
+
+The example below shows how to apply simulated annealing to a problem of optimizing a tour between European cities.  You can play with the parameters and random number seeds to improve the European tour (you don't to need to submit this part).  Next, modify the codeq to solve the 48 city TSP from Problem 2.  Experiment with `maxit`, `temp`  and try different random seeds to produce the shortest tour you can. Include a graph of the best tour you are able to find.
+
+```{r,echo=FALSE}
+# this is the subtour reversal step described in the textbook
+subtourReverse <- function(tour,D) {  # Generate new candidate sequence
+  swap.pair <- sample(1:length(tour), size = 2, replace = FALSE)
+  tour[swap.pair] <- tour[swap.pair[c(2,1)]] 
+  tour
+}
+
+# load data
+eurodistmat <- as.matrix(eurodist)
+numcities = dim(eurodistmat)[1]
+# this creates plausible coordinates from the distance matrix.  not necessary for
+# the HW problem where we read the coordinates from a file
+loc <- -cmdscale(eurodistmat, add = TRUE)$points 
+x <- loc[,1]; y <- loc[,2]
+
+set.seed(2)
+tour.init = 1:numcities
+res = optim(tour.init, tourLength, subtourReverse, D = eurodistmat,
+            method = "SANN",
+            control = list(maxit = 50000, temp = 2000, 
+                           trace = FALSE, REPORT = 500) )
+totaldist <- res$value
+tour <- res$par
+
+plotTour(x,y,tour,totaldist,"SANN tour.")
+```
+
+## HW 9.4 - Comparing Algorithms for a 30 dimensional Rastrigin function
+
+The 30 dimensional Rastrigin function is considered very difficult to optimize and is a test case for many optimization algorithms.  We know that the global minimum value of 0 occurs at the origin.  For this problem you should compare the performance of Naive Multistart, the Genetic Algorithm plus local search, and the Simulated Annealing algorithm GenSA() from the 'GenSA' package. If you can get it to work, then also try the mlsl() function in the 'nloptr' package as it should work considerably better than Naive Multistart.  The article "Continuous Global Optimzation in R," by Katharine Mullen, gives an overview of optimizing continuous functions in R.  You can find the article in the download packet.
+
+This is a somewhat open problem, but at the very least you should try each algorithm multiple times (possibly in for loop) and report on which algorithms are most efficient (fewest function calls) and which are most reliable (able to consistently identify the global minimum). Experiment with the algorithm parameters (population size, number of iterations of local search, etc.) You'll likely have to increase population sizes and the maximum number of iterations to successfully solve the 30 dimensional problem.  Look at the source code in the presentation .Rmd file included in the download packet for guidance in setting up your algorithms.  Warning - some of the optimization routines find maxima instead of minima so you'll need to maximize -f(x) to find the location of the minimum.
+
+```{r echo = FALSE}
+Rastrigin <- function(x) {
+            (sum(x^2 - 10 * cos(2 * pi  * x)) + 10 * length(x))
+}
+```
+
+```{r}
+# your code goes in this block
+dimension = 30;
+lower = rep(-5.12,dimension); upper = rep(5.12,dimension); 
+x0 = runif(dimension,-5.12,5.12)
+```
+
+Discuss your algorithm comparison here:
